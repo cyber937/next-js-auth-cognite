@@ -5,8 +5,6 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 export default function Nav() {
   const { data: session } = useSession()
 
-  console.log(session)
-
   let authButton: React.ReactElement | null = null;
 
   if (!session) {
@@ -17,7 +15,7 @@ export default function Nav() {
     )
   } else {
     authButton = (
-      <button onClick={() => signOut({ callbackUrl: 'http://localhost:3000' })}>
+      <button onClick={() => signOut({ callbackUrl: process.env.NEXT_PUBLIC_DOMAIN })}>
         Sign Out
       </button>
     )
